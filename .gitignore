@@ -16,6 +16,9 @@ proguard/
 .idea/libraries/
 .idea/workspace.xml
 .idea/libraries
+.idea/modules.xml
+.idea/runConfigurations.xml
+.idea/vcs.xml
 .gradle
 app/build/
 /buld
