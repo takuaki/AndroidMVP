@@ -3,11 +3,13 @@ package jp.ne.tone.architecturemvp.presenter;
 import android.util.Log;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import jp.ne.tone.architecturemvp.model.GitHubModel;
-import jp.ne.tone.architecturemvp.model.executor.UseCase;
+import jp.ne.tone.architecturemvp.model.usecase.UseCase;
+import jp.ne.tone.architecturemvp.presenter.mapper.GitHubMapper;
 import jp.ne.tone.architecturemvp.view.RepoListView;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -52,7 +54,8 @@ public class ListViewPresenter implements Presenter{
             @Override
             public void onResponse(Call<List<GitHubModel>> call,
                     Response<List<GitHubModel>> response) {
-                repoListView.showRepositories(response.body());
+                List<Map<String,String>> viewItems = GitHubMapper.transformer(response.body());
+                repoListView.showRepositories(viewItems);
             }
             @Override
             public void onFailure(Call<List<GitHubModel>> call, Throwable t) {

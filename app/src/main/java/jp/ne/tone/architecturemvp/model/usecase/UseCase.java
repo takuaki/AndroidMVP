@@ -1,4 +1,4 @@
-package jp.ne.tone.architecturemvp.model.executor;
+package jp.ne.tone.architecturemvp.model.usecase;
 
 import java.util.List;
 

@@ -7,11 +7,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SimpleAdapter;
 
 import java.util.List;
+import java.util.Map;
 
-import jp.ne.tone.architecturemvp.model.GitHubModel;
+import javax.inject.Inject;
+
+import jp.ne.tone.architecturemvp.presenter.ListViewPresenter;
+import jp.ne.tone.architecturemvp.presenter.component.FragmentComponent;
+import jp.ne.tone.architecturemvp.presenter.module.FragmentModule;
 import jp.ne.tone.architecturemvp.view.RepoListView;
+import jp.ne.tone.architecturemvp.view.RepoView;
+import jp.ne.tone.architecturemvp.view.activity.RepoListActivity;
 
 /**
  * Created by tmori on 2016/06/13.
@@ -20,17 +28,19 @@ public class RepoListFragment extends ListFragment  implements RepoListView{
 
     private static final String TAG = RepoListFragment.class.getSimpleName();
 
-    //private UserComponent mUserComponent;
+    private FragmentComponent fragmentComponent;
 
-    //@Inject
-    //ListViewPresenter presenter;
+    @Inject
+    ListViewPresenter presenter;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        //mUserComponent = ((RepoListActivity)getActivity()).getComponent().newUserComponent(new UserModule());
-        //mUserComponent.inject(this);
+        fragmentComponent = ((RepoListActivity)getActivity()).getComponent().newFragmentComponent(
+                new FragmentModule());
+        fragmentComponent.inject(this);
+        presenter.setView(this);
     }
 
     @Override
@@ -41,8 +51,6 @@ public class RepoListFragment extends ListFragment  implements RepoListView{
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //presenter.setView(this);
-        //presenter.showRepoView();
     }
 
     @Override
@@ -53,24 +61,30 @@ public class RepoListFragment extends ListFragment  implements RepoListView{
     //lifecycle
     @Override
     public void onResume(){
-        //presenter.onResume();
+        super.onResume();
+        presenter.onResume();
     }
 
     @Override
     public void onPause(){
-        //presenter.onPause();
+        super.onPause();
+        presenter.onPause();
     }
     @Override
     public void onDestroy(){
-        //presenter.onDestroy();
+        super.onDestroy();
+        presenter.onDestroy();
     }
 
+
     @Override
-    public void showRepositories(List<GitHubModel> gitHubModelList) {
-        Log.d(TAG,"showRepositories");
-        for(GitHubModel model :gitHubModelList){
-            Log.d(TAG,"name "+model.getName());
+    public void showRepositories(List<Map<String, String>> mapList) {
+        for(Map<String,String> map:mapList){
+            Log.d(TAG,"name:"+map.get("name"));
         }
+        SimpleAdapter adapter = new SimpleAdapter(getActivity(),mapList,android.R.layout.simple_expandable_list_item_2
+        ,new String[]{RepoView.KEY_NAME,RepoView.KEY_DESC},new int[]{android.R.id.text1,android.R.id.text2});
+        setListAdapter(adapter);
     }
 
     @Override
