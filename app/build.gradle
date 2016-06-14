@@ -13,6 +13,8 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    
     buildTypes {
         release {
             minifyEnabled false
@@ -37,5 +39,6 @@ dependencies {
     //Gson library
     compile 'com.google.code.gson:gson:2.6.2'
 
-
+    //test
+    testCompile "org.robolectric:robolectric:3.0"
 }

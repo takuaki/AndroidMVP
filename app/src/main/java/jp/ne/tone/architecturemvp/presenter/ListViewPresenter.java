@@ -1,10 +1,17 @@
 package jp.ne.tone.architecturemvp.presenter;
 
+import android.util.Log;
+
+import java.util.List;
+
 import javax.inject.Inject;
 
 import jp.ne.tone.architecturemvp.model.GitHubModel;
-import jp.ne.tone.architecturemvp.model.UseCase;
+import jp.ne.tone.architecturemvp.model.executor.UseCase;
 import jp.ne.tone.architecturemvp.view.RepoListView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by mori on 6/13/16.
@@ -16,7 +23,10 @@ import jp.ne.tone.architecturemvp.view.RepoListView;
 @PerActivity
 public class ListViewPresenter implements Presenter{
 
+    private static final String TAG = ListViewPresenter.class.getSimpleName();
+
     RepoListView repoListView;
+
     UseCase useCase;
 
     @Inject
@@ -28,16 +38,27 @@ public class ListViewPresenter implements Presenter{
         this.repoListView = view;
     }
 
-    public void onClickRepo(){
 
+    public void onClickRepo(String name){
+        //TODO  次の画面がないので未実装。あとからやりましょ
     }
 
     public void showLoadView(){
 
     }
 
-    public void showRepoView(GitHubModel gitHubModel){
-
+    public void showRepoView(){
+        useCase.execute(new Callback<List<GitHubModel>>() {
+            @Override
+            public void onResponse(Call<List<GitHubModel>> call,
+                    Response<List<GitHubModel>> response) {
+                repoListView.showRepositories(response.body());
+            }
+            @Override
+            public void onFailure(Call<List<GitHubModel>> call, Throwable t) {
+                Log.d(TAG,"onFailure");
+            }
+        });
     }
 
     /**

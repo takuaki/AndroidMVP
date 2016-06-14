@@ -3,6 +3,7 @@ package jp.ne.tone.architecturemvp.presenter.component;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import jp.ne.tone.architecturemvp.presenter.module.ActivityModule;
 import jp.ne.tone.architecturemvp.presenter.module.ApplicationModule;
 
 /**
@@ -12,6 +13,6 @@ import jp.ne.tone.architecturemvp.presenter.module.ApplicationModule;
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent{
 
-    ActivityComponent getActivityComponent();
+    ActivityComponent newActivityComponent(ActivityModule module);
 
 }
