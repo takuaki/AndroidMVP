@@ -5,20 +5,26 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
+import jp.ne.tone.architecturemvp.MyApp;
 import jp.ne.tone.architecturemvp.R;
-import jp.ne.tone.architecturemvp.view.fragment.ListViewFragment;
+import jp.ne.tone.architecturemvp.presenter.component.ActivityComponent;
+import jp.ne.tone.architecturemvp.view.fragment.RepoListFragment;
 
 /**
  * Created by tmori on 2016/06/13.
  */
-public class ListActivity extends AppCompatActivity {
+public class RepoListActivity extends AppCompatActivity {
+
+    public ActivityComponent activityComponent ;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_layout);
 
-        ListViewFragment viewFragment = new ListViewFragment();
+        activityComponent = ((MyApp)(getApplication())).getActivityComponent();
+
+        RepoListFragment viewFragment = new RepoListFragment();
 
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction =  manager.beginTransaction();
