@@ -74,7 +74,8 @@ public class ListViewPresenter implements Presenter{
      */
     @Override
     public void onResume(){
-
+        Log.d(TAG,"onResume");
+        showRepoView();
     }
 
     @Override

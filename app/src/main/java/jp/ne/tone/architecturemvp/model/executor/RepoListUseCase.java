@@ -18,7 +18,9 @@ public class RepoListUseCase implements UseCase{
     GitHubService mGitHubService;
 
     @Inject
-    public RepoListUseCase(GitHubService gitHubService){}
+    public RepoListUseCase(GitHubService gitHubService){
+        mGitHubService = gitHubService;
+    }
 
     @Override
     public void execute(Callback<List<GitHubModel>> callback) {
