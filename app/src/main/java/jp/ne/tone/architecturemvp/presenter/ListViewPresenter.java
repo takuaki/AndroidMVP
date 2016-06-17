@@ -64,6 +64,10 @@ public class ListViewPresenter implements Presenter{
         });
     }
 
+    public void initialize(){
+        showRepoView();
+    }
+
     /**
      * LifeCycle管理
      */

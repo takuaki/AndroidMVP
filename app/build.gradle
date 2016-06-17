@@ -1,6 +1,36 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
+ext{
+
+    //Libraries
+    daggerVersion = '2.2'
+    butterKnifeVersion = '7.0.1'
+    gsonVersion = '2.6.2'
+    retrofitVersion = '2.0.2'
+    javaxAnnotationVersion = '1.0'
+
+    //testing
+    jUnitVersion = '4.12'
+    assertJVersion = '1.7.1'
+    mockitoVersion = '1.9.5'
+    dexmakerVersion = '1.0'
+    espressoVersion = '2.0'
+    testingSupportLibVersion = '0.1'
+
+    presentationDependencies = [
+        dagger: "com.google.dagger:dagger:${daggerVersion}",
+        daggerCompiler :"com.google.dagger:dagger-compiler:${daggerVersion}",
+        javaxAnnotation :"javax.annotation:jsr250-api:${javaxAnnotationVersion}"
+    ]
+
+    presentationTestDependencies=[
+        mockito :"org.mockito:mockito-core:${mockitoVersion}",
+        espresso :"com.android.support.test.espresso:espresso-core:${espressoVersion}",
+        testingSupportLib: "com.android.support.test:testing-support-lib:${testingSupportLibVersion}"
+    ]
+
+}
 
 android {
     compileSdkVersion 23
@@ -12,6 +42,8 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
 
     
@@ -41,4 +73,14 @@ dependencies {
 
     //test
     testCompile "org.robolectric:robolectric:3.0"
+    //AndroidTest
+    androidTestCompile "org.mockito:mockito-core:${mockitoVersion}"
+    androidTestCompile "com.android.support.test.espresso:espresso-core:${espressoVersion}"
+    androidTestCompile "com.android.support.test:testing-support-lib:${testingSupportLibVersion}"
+    androidTestCompile "com.google.dexmaker:dexmaker:${dexmakerVersion}"
+    androidTestCompile "com.google.dexmaker:dexmaker-mockito:${dexmakerVersion}"
+
+
+
+
 }
