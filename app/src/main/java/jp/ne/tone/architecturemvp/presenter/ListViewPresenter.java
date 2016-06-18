@@ -27,7 +27,7 @@ public class ListViewPresenter implements Presenter{
 
     private static final String TAG = ListViewPresenter.class.getSimpleName();
 
-    RepoListView repoListView;
+    private RepoListView repoListView;
 
     UseCase useCase;
 
@@ -41,21 +41,32 @@ public class ListViewPresenter implements Presenter{
     }
 
 
-    public void onClickRepo(String name){
-        //TODO  次の画面がないので未実装。あとからやりましょ
+    public void onClickRepo(GitHubModel model){
+        repoListView.showRepoDetails(model);
     }
 
-    public void showLoadView(){
-
+    public void initialize(){
+        showLoadView();
+        showRepoView();
     }
 
-    public void showRepoView(){
+    private void showLoadView(){
+        repoListView.showLoading();
+    }
+
+    private void hideLoadView(){
+        repoListView.hideLoading();
+    }
+
+    private void showRepoView(){
         useCase.execute(new Callback<List<GitHubModel>>() {
             @Override
             public void onResponse(Call<List<GitHubModel>> call,
                     Response<List<GitHubModel>> response) {
+                Log.d(TAG,"response "+response.toString());
                 List<Map<String,String>> viewItems = GitHubMapper.transformer(response.body());
                 repoListView.showRepositories(viewItems);
+                hideLoadView();
             }
             @Override
             public void onFailure(Call<List<GitHubModel>> call, Throwable t) {
@@ -64,16 +75,12 @@ public class ListViewPresenter implements Presenter{
         });
     }
 
-    public void initialize(){
-        showRepoView();
-    }
-
     /**
      * LifeCycle管理
      */
     @Override
     public void onPause(){
-
+        Log.d(TAG,"onPause");
     }
 
     /**
@@ -82,11 +89,12 @@ public class ListViewPresenter implements Presenter{
     @Override
     public void onResume(){
         Log.d(TAG,"onResume");
-        showRepoView();
+        initialize();
     }
 
     @Override
     public void onDestroy(){
+        Log.d(TAG,"onDestroy");
         repoListView =null;
     }
 
