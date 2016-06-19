@@ -21,7 +21,7 @@ public class MyApp extends Application {
 
     }
 
-    public ApplicationComponent getApplicationComponent(){
+    public ApplicationComponent getApplicationComponent() {
         return mApplicationComponent;
     }
 

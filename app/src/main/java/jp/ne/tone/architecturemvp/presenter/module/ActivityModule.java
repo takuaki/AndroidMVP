@@ -15,13 +15,13 @@ public class ActivityModule {
 
     private final RepoListActivity activity;
 
-    public ActivityModule(RepoListActivity activity){
+    public ActivityModule(RepoListActivity activity) {
         this.activity = activity;
     }
 
     @PerActivity
     @Provides
-    UseCase provideRepoListUseCase(RepoListUseCase useCase){
+    UseCase provideRepoListUseCase(RepoListUseCase useCase) {
         return useCase;
     }
 }

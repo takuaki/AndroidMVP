@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by tmori on 2016/06/13.
- *
+ * <p/>
  * GitHubのデータ形式(モデル)
- *
+ * <p/>
  * id:レポジトリのID
  * name:レポジトリの名前
  * description:レポジトリの説明
@@ -18,7 +18,6 @@ public class GitHubModel {
     private String name;
     @SerializedName("description")
     private String description;
-
 
     public String getName() {
         return name;
@@ -45,7 +44,7 @@ public class GitHubModel {
     }
 
     @Override
-    public String toString(){
-        return String.format("RepositotyResponse{id:%s,name:%s,description:%s}",id,name,description);
+    public String toString() {
+        return String.format("RepositotyResponse{id:%s,name:%s,description:%s}", id, name, description);
     }
 }

@@ -6,4 +6,5 @@ import dagger.Module;
  * Created by mori on 6/14/16.
  */
 @Module
-public class FragmentModule {}
+public class FragmentModule {
+}

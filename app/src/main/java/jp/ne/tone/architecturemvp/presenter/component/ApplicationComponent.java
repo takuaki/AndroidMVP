@@ -11,7 +11,7 @@ import jp.ne.tone.architecturemvp.presenter.module.ApplicationModule;
  */
 @Singleton
 @Component(modules = ApplicationModule.class)
-public interface ApplicationComponent{
+public interface ApplicationComponent {
 
     ActivityComponent newActivityComponent(ActivityModule module);
 

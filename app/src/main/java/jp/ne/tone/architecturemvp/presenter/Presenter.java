@@ -5,6 +5,8 @@ package jp.ne.tone.architecturemvp.presenter;
  */
 public interface Presenter {
     void onPause();
+
     void onResume();
+
     void onDestroy();
 }

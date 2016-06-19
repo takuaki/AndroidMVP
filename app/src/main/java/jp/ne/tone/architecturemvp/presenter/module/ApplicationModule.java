@@ -18,20 +18,21 @@ public class ApplicationModule {
 
     private final MyApp mApplication;
 
-    public ApplicationModule(MyApp application){
+    public ApplicationModule(MyApp application) {
         mApplication = application;
     }
 
-    @Singleton @Provides
-    Context provideApplicationContext(){
+    @Singleton
+    @Provides
+    Context provideApplicationContext() {
         return mApplication;
     }
 
-    @Singleton @Provides
-    GitHubService provideGitHubService(GitHubServiceImpl service){
+    @Singleton
+    @Provides
+    GitHubService provideGitHubService(GitHubServiceImpl service) {
         return service;
     }
-
 
 
 }

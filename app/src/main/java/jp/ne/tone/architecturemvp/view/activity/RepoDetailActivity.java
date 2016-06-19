@@ -11,7 +11,7 @@ import jp.ne.tone.architecturemvp.R;
 public class RepoDetailActivity extends AppCompatActivity {
 
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
     }

@@ -20,7 +20,8 @@ public class GitHubServiceImpl implements GitHubService {
     private static final String baseUrl = "https://api.github.com";
 
     @Inject
-    public GitHubServiceImpl(){}
+    public GitHubServiceImpl() {
+    }
 
     private final Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(
             GsonConverterFactory.create()).

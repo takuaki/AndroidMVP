@@ -13,12 +13,12 @@ import retrofit2.Callback;
  * Created by tmori on 2016/06/14.
  */
 @PerActivity
-public class RepoListUseCase implements UseCase{
+public class RepoListUseCase implements UseCase {
 
     GitHubService mGitHubService;
 
     @Inject
-    public RepoListUseCase(GitHubService gitHubService){
+    public RepoListUseCase(GitHubService gitHubService) {
         mGitHubService = gitHubService;
     }
 
