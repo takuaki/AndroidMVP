@@ -2,6 +2,7 @@ package jp.ne.tone.architecturemvp.presenter.module;
 
 import dagger.Module;
 import dagger.Provides;
+import jp.ne.tone.architecturemvp.domain.interactor.RepositoriesUseCase;
 import jp.ne.tone.architecturemvp.model.usecase.RepoListUseCase;
 import jp.ne.tone.architecturemvp.model.usecase.UseCase;
 import jp.ne.tone.architecturemvp.presenter.PerActivity;
@@ -24,4 +25,9 @@ public class ActivityModule {
     UseCase provideRepoListUseCase(RepoListUseCase useCase) {
         return useCase;
     }
+
+    @PerActivity
+    @Provides
+    jp.ne.tone.architecturemvp.domain.interactor.UseCase
+    provideRepositoryUseCase(RepositoriesUseCase useCase){return useCase;}
 }

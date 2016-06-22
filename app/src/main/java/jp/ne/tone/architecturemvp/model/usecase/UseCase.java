@@ -9,5 +9,5 @@ import retrofit2.Callback;
  * Created by tmori on 2016/06/14.
  */
 public interface UseCase {
-    public void execute(Callback<List<GitHubModel>> callback);
+    void execute(Callback<List<GitHubModel>> callback);
 }

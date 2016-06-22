@@ -6,14 +6,12 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import jp.ne.tone.architecturemvp.domain.interactor.DefaultSubscriber;
+import jp.ne.tone.architecturemvp.domain.interactor.UseCase;
 import jp.ne.tone.architecturemvp.model.GitHubModel;
-import jp.ne.tone.architecturemvp.model.usecase.UseCase;
 import jp.ne.tone.architecturemvp.presenter.mapper.GitHubMapper;
 import jp.ne.tone.architecturemvp.view.RepoItem;
 import jp.ne.tone.architecturemvp.view.RepoListView;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Created by mori on 6/13/16.
@@ -58,21 +56,8 @@ public class ListViewPresenter implements Presenter {
     }
 
     private void showRepoView() {
-        useCase.execute(new Callback<List<GitHubModel>>() {
-            @Override
-            public void onResponse(Call<List<GitHubModel>> call,
-                                   Response<List<GitHubModel>> response) {
-                Log.d(TAG, "response " + response.toString());
-                List<RepoItem> viewItems = GitHubMapper.transformer(response.body());
-                repoListView.showRepositories(viewItems);
-                hideLoadView();
-            }
+        useCase.execute(new RepoListSubscriber());
 
-            @Override
-            public void onFailure(Call<List<GitHubModel>> call, Throwable t) {
-                Log.d(TAG, "onFailure");
-            }
-        });
     }
 
     /**
@@ -95,6 +80,22 @@ public class ListViewPresenter implements Presenter {
     public void onDestroy() {
         Log.d(TAG, "onDestroy");
         repoListView = null;
+    }
+
+    private final class RepoListSubscriber extends DefaultSubscriber<List<GitHubModel>> {
+        @Override public void onCompleted(){
+            ListViewPresenter.this.hideLoadView();
+        }
+        @Override public void onError(Throwable e){
+            ListViewPresenter.this.hideLoadView();
+            Log.e(TAG,e.getMessage());
+        }
+        @Override public void onNext(List<GitHubModel> models){
+            List<RepoItem> viewItems = GitHubMapper.transformer(models);
+            repoListView.showRepositories(viewItems);
+            hideLoadView();
+        }
+
     }
 
 }
