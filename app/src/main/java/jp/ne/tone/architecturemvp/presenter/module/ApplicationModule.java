@@ -7,6 +7,8 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import jp.ne.tone.architecturemvp.MyApp;
+import jp.ne.tone.architecturemvp.data.repository.GitHubDataRepository;
+import jp.ne.tone.architecturemvp.domain.repository.GitHubRepository;
 import jp.ne.tone.architecturemvp.model.service.GitHubService;
 import jp.ne.tone.architecturemvp.model.service.GitHubServiceImpl;
 
@@ -34,5 +36,9 @@ public class ApplicationModule {
         return service;
     }
 
-
+    @Singleton
+    @Provides
+    GitHubRepository provideGitHubRepository(GitHubDataRepository repository){
+        return repository;
+    }
 }

@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
 
 ext{
 
@@ -9,6 +10,8 @@ ext{
     gsonVersion = '2.6.2'
     retrofitVersion = '2.0.2'
     javaxAnnotationVersion = '1.0'
+    rxJavaVersion = '1.0.14'
+    rxAndroidVersion = '1.0.1'
 
     //testing
     jUnitVersion = '4.12'
@@ -73,7 +76,10 @@ dependencies {
     compile 'com.google.code.gson:gson:2.6.2'
     //Espresso IdlingResources
     compile "com.android.support.test.espresso:espresso-idling-resource:${espressoVersion}"
-
+    //rxJava
+    compile "io.reactivex:rxjava:${rxJavaVersion}"
+    //RxAndroid
+    compile  "io.reactivex:rxandroid:${rxAndroidVersion}"
 
     //test
     testCompile "org.robolectric:robolectric:3.0"
@@ -94,7 +100,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile "org.mockito:mockito-all:${mockitoVersion}"
     testCompile "org.hamcrest:hamcrest-all:${hamcrestVersion}"
-
-
 
 }
