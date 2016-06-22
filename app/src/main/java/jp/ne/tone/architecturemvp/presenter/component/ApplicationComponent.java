@@ -14,5 +14,4 @@ import jp.ne.tone.architecturemvp.presenter.module.ApplicationModule;
 public interface ApplicationComponent {
 
     ActivityComponent newActivityComponent(ActivityModule module);
-
 }

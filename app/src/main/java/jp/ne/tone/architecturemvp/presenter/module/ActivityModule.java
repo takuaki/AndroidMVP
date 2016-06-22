@@ -2,8 +2,8 @@ package jp.ne.tone.architecturemvp.presenter.module;
 
 import dagger.Module;
 import dagger.Provides;
-import jp.ne.tone.architecturemvp.model.usecase.RepoListUseCase;
-import jp.ne.tone.architecturemvp.model.usecase.UseCase;
+import jp.ne.tone.architecturemvp.domain.usecase.UseCase;
+import jp.ne.tone.architecturemvp.domain.usecase.RepoListUseCase;
 import jp.ne.tone.architecturemvp.presenter.PerActivity;
 import jp.ne.tone.architecturemvp.view.activity.RepoListActivity;
 

@@ -5,7 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import jp.ne.tone.architecturemvp.model.GitHubModel;
-import jp.ne.tone.architecturemvp.model.service.GitHubService;
+import jp.ne.tone.architecturemvp.data.service.GitHubService;
 import jp.ne.tone.architecturemvp.presenter.PerActivity;
 import retrofit2.Callback;
 

@@ -1,4 +1,4 @@
-package jp.ne.tone.architecturemvp.model.service;
+package jp.ne.tone.architecturemvp.data.service;
 
 import java.util.List;
 
