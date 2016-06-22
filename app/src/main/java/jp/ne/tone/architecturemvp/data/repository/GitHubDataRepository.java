@@ -1,8 +1,11 @@
 package jp.ne.tone.architecturemvp.data.repository;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import jp.ne.tone.architecturemvp.data.net.GitHubApi;
 import jp.ne.tone.architecturemvp.domain.repository.GitHubRepository;
 import jp.ne.tone.architecturemvp.model.GitHubModel;
 import rx.Observable;
@@ -13,11 +16,15 @@ import rx.Observable;
 @Singleton
 public class GitHubDataRepository implements GitHubRepository {
 
+    private GitHubApi gitHubApi;
+
     @Inject
-    public GitHubDataRepository(){}
+    public GitHubDataRepository(GitHubApi gitHubApi){
+        this.gitHubApi =gitHubApi;
+    }
 
     @Override
-    public Observable<GitHubModel> repo(String name) {
-        return null;
+    public Observable<List<GitHubModel>> repos() {
+        return gitHubApi.provideRepositories();
     }
 }

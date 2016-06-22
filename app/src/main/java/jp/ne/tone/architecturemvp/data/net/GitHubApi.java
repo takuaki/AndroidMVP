@@ -1,4 +1,4 @@
-package jp.ne.tone.architecturemvp.domain.repository;
+package jp.ne.tone.architecturemvp.data.net;
 
 import java.util.List;
 
@@ -8,7 +8,8 @@ import rx.Observable;
 /**
  * Created by mori on 6/22/16.
  */
-public interface GitHubRepository {
+public interface GitHubApi{
 
-    Observable<List<GitHubModel>> repos();
+    Observable<List<GitHubModel>> provideRepositories();
+
 }

@@ -8,6 +8,8 @@ import dagger.Module;
 import dagger.Provides;
 import jp.ne.tone.architecturemvp.MyApp;
 import jp.ne.tone.architecturemvp.data.executor.JobExecutor;
+import jp.ne.tone.architecturemvp.data.net.GitHubApi;
+import jp.ne.tone.architecturemvp.data.net.GitHubApiImpl;
 import jp.ne.tone.architecturemvp.data.repository.GitHubDataRepository;
 import jp.ne.tone.architecturemvp.domain.executor.PostExecutionThread;
 import jp.ne.tone.architecturemvp.domain.executor.ThreadExecutor;
@@ -42,6 +44,12 @@ public class ApplicationModule {
 
     @Singleton
     @Provides
+    GitHubApi provideGitHubApi(GitHubApiImpl gitHubApi){
+        return gitHubApi;
+    }
+
+    @Singleton
+    @Provides
     GitHubRepository provideGitHubRepository(GitHubDataRepository repository){
         return repository;
     }
@@ -57,4 +65,6 @@ public class ApplicationModule {
     ThreadExecutor provideThreadExecutor(JobExecutor executor){
         return executor;
     }
+
+
 }
