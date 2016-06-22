@@ -57,7 +57,6 @@ public class ListViewPresenter implements Presenter {
 
     private void showRepoView() {
         useCase.execute(new RepoListSubscriber());
-
     }
 
     /**

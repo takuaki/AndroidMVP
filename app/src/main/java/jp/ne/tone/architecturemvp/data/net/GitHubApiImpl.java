@@ -1,12 +1,14 @@
 package jp.ne.tone.architecturemvp.data.net;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import jp.ne.tone.architecturemvp.presentation.model.GitHubModel;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import rx.Observable;
 import rx.Subscriber;
 
@@ -15,17 +17,6 @@ import rx.Subscriber;
  */
 @Singleton
 public class GitHubApiImpl implements GitHubApi {
-
-    private static final String baseUrl = "https://api.github.com";
-    private static List<GitHubModel> modelList = new ArrayList<>();
-
-    static {
-        GitHubModel model = new GitHubModel();
-        model.setName("Android-CleanArchitecture");
-        model.setId("id");
-        model.setDescription("Android-CleanArchitecture");
-        modelList.add(model);
-    }
 
     @Inject
     public GitHubApiImpl() {
@@ -36,10 +27,21 @@ public class GitHubApiImpl implements GitHubApi {
         return Observable.create(
                 new Observable.OnSubscribe<List<GitHubModel>>() {
                     @Override
-                    public void call(Subscriber<? super List<GitHubModel>> subscriber) {
-                        //TODO 未実装 今はから。
-                        subscriber.onNext(modelList);
-                        subscriber.onCompleted();
+                    public void call(final Subscriber<? super List<GitHubModel>> subscriber) {
+
+                        GitHubService service = new GitHubService();
+                        service.call("takuaki").enqueue(new Callback<List<GitHubModel>>() {
+                            @Override
+                            public void onResponse(Call<List<GitHubModel>> call, Response<List<GitHubModel>> response) {
+                                subscriber.onNext(response.body());
+                                subscriber.onCompleted();
+                            }
+
+                            @Override
+                            public void onFailure(Call<List<GitHubModel>> call, Throwable t) {
+                                subscriber.onError(t);
+                            }
+                        });
                     }
                 }
         );
