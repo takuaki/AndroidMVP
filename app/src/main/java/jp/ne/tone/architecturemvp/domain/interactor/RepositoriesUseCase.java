@@ -5,7 +5,7 @@ import javax.inject.Inject;
 import jp.ne.tone.architecturemvp.data.net.GitHubApi;
 import jp.ne.tone.architecturemvp.domain.executor.PostExecutionThread;
 import jp.ne.tone.architecturemvp.domain.executor.ThreadExecutor;
-import jp.ne.tone.architecturemvp.presenter.PerActivity;
+import jp.ne.tone.architecturemvp.presentation.presenter.PerActivity;
 import rx.Observable;
 
 /**
@@ -16,7 +16,7 @@ import rx.Observable;
 public class RepositoriesUseCase extends UseCase {
 
     @Inject
-    GitHubApi gitHubApi ;
+    GitHubApi gitHubApi;
 
     @Inject
     public RepositoriesUseCase(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread) {

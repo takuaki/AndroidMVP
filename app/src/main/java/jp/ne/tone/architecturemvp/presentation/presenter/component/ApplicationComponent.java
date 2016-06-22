@@ -1,0 +1,18 @@
+package jp.ne.tone.architecturemvp.presentation.presenter.component;
+
+import javax.inject.Singleton;
+
+import dagger.Component;
+import jp.ne.tone.architecturemvp.presentation.presenter.module.ActivityModule;
+import jp.ne.tone.architecturemvp.presentation.presenter.module.ApplicationModule;
+
+/**
+ * Created by mori on 6/13/16.
+ */
+@Singleton
+@Component(modules = ApplicationModule.class)
+public interface ApplicationComponent {
+
+    ActivityComponent newActivityComponent(ActivityModule module);
+
+}

@@ -25,7 +25,7 @@ public abstract class UseCase {
 
     protected abstract Observable buildUseCaseObservable();
 
-    public void execute(Subscriber UseCaseSubscriber){
+    public void execute(Subscriber UseCaseSubscriber) {
         this.subscription = this.buildUseCaseObservable()
                 .subscribeOn(Schedulers.from(threadExecutor))
                 .observeOn(postExecutionThread.getScheduler())

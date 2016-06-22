@@ -7,7 +7,7 @@ import javax.inject.Singleton;
 
 import jp.ne.tone.architecturemvp.data.net.GitHubApi;
 import jp.ne.tone.architecturemvp.domain.repository.GitHubRepository;
-import jp.ne.tone.architecturemvp.model.GitHubModel;
+import jp.ne.tone.architecturemvp.presentation.model.GitHubModel;
 import rx.Observable;
 
 /**
@@ -19,8 +19,8 @@ public class GitHubDataRepository implements GitHubRepository {
     private GitHubApi gitHubApi;
 
     @Inject
-    public GitHubDataRepository(GitHubApi gitHubApi){
-        this.gitHubApi =gitHubApi;
+    public GitHubDataRepository(GitHubApi gitHubApi) {
+        this.gitHubApi = gitHubApi;
     }
 
     @Override

@@ -6,7 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import jp.ne.tone.architecturemvp.model.GitHubModel;
+import jp.ne.tone.architecturemvp.presentation.model.GitHubModel;
 import rx.Observable;
 import rx.Subscriber;
 
@@ -17,8 +17,9 @@ import rx.Subscriber;
 public class GitHubApiImpl implements GitHubApi {
 
     private static final String baseUrl = "https://api.github.com";
-    private static List<GitHubModel> modelList  = new ArrayList<>();
-    static{
+    private static List<GitHubModel> modelList = new ArrayList<>();
+
+    static {
         GitHubModel model = new GitHubModel();
         model.setName("Android-CleanArchitecture");
         model.setId("id");
@@ -27,7 +28,8 @@ public class GitHubApiImpl implements GitHubApi {
     }
 
     @Inject
-    public GitHubApiImpl() {}
+    public GitHubApiImpl() {
+    }
 
     @Override
     public Observable<List<GitHubModel>> provideRepositories() {

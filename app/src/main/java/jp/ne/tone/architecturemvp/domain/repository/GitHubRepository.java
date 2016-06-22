@@ -2,7 +2,7 @@ package jp.ne.tone.architecturemvp.domain.repository;
 
 import java.util.List;
 
-import jp.ne.tone.architecturemvp.model.GitHubModel;
+import jp.ne.tone.architecturemvp.presentation.model.GitHubModel;
 import rx.Observable;
 
 /**
